@@ -6,79 +6,64 @@ import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.core.widget.doOnTextChanged
+import com.aman.validations.databinding.ActivityRegistrationBinding
 
 class RegistrationActivity : AppCompatActivity() {
-    lateinit var etName: EditText
-    lateinit var etEmail: EditText
-    lateinit var etPhoneNumber: EditText
-    lateinit var etPassword: EditText
-    lateinit var etConfirmPassword: EditText
-    lateinit var etOtherName: EditText
-    lateinit var rgGender: RadioGroup
-    lateinit var rbOther: RadioButton
-    lateinit var btnSignup: Button
+    lateinit var binding: ActivityRegistrationBinding
     private  val TAG = "RegistrationActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registration)
-        etName = findViewById(R.id.etName)
-        etEmail = findViewById(R.id.etEmail)
-        etPhoneNumber = findViewById(R.id.etPhoneNumber)
-        etPassword = findViewById(R.id.etPassword)
-        etConfirmPassword = findViewById(R.id.etConfirmPassword)
-        etOtherName = findViewById(R.id.etOtherName)
-        rgGender = findViewById(R.id.rgGender)
-        btnSignup = findViewById(R.id.btnSignup)
-        rbOther = findViewById(R.id.rbOther)
+        binding = ActivityRegistrationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        rgGender.setOnCheckedChangeListener { radioGroup, id ->
+        binding.rgGender.setOnCheckedChangeListener { radioGroup, id ->
             if(id == R.id.rbOther){
-                etOtherName.visibility = View.VISIBLE
+                binding.etOtherName.visibility = View.VISIBLE
             }else{
-                etOtherName.visibility = View.INVISIBLE
+                binding.etOtherName.visibility = View.INVISIBLE
             }
         }
 
-        etPhoneNumber.doOnTextChanged { text, start, before, count ->
+        binding.etPhoneNumber.doOnTextChanged { text, start, before, count ->
             if((text?.length?:0)<10){
-                etPhoneNumber.error = resources.getString(R.string.enter_valid_phone_number)
+                binding.etPhoneNumber.error = resources.getString(R.string.enter_valid_phone_number)
             }else{
-                etPhoneNumber.error = null
+                binding.etPhoneNumber.error = null
             }
         }
 
-        btnSignup.setOnClickListener {
-            if(etName.text.toString().isNullOrEmpty()){
-                etName.error = resources.getString(R.string.enter_name)
-                etName.requestFocus()
-            }else if(etEmail.text.toString().isNullOrEmpty()){
-                etEmail.error = resources.getString(R.string.enter_your_email)
-                etEmail.requestFocus()
-            }else if(!Patterns.EMAIL_ADDRESS.matcher(etEmail.text.toString()).matches()){
-                etEmail.error = resources.getString(R.string.enter_your_email)
-                etEmail.requestFocus()
-            } else if(etPhoneNumber.text.toString().isNullOrEmpty()){
-                etPhoneNumber.error = resources.getString(R.string.enter_your_phone_number)
-                etPhoneNumber.requestFocus()
-            }else if(etPhoneNumber.text.toString().length<10){
-                etPhoneNumber.error = resources.getString(R.string.enter_valid_phone_number)
-                etPhoneNumber.requestFocus()
-            }else if(etPassword.text.toString().isNullOrEmpty()){
-                etPassword.error = resources.getString(R.string.enter_password)
-                etPassword.requestFocus()
-            }else if(etConfirmPassword.text.toString().isNullOrEmpty()){
-                etConfirmPassword.error = resources.getString(R.string.enter_confirm_password)
-                etConfirmPassword.requestFocus()
+        binding.btnSignup.setOnClickListener {
+            if(binding.etName.text.toString().isNullOrEmpty()){
+                binding.etName.error = resources.getString(R.string.enter_name)
+                binding.etName.requestFocus()
+            }else if(binding.etEmail.text.toString().isNullOrEmpty()){
+                binding.etEmail.error = resources.getString(R.string.enter_your_email)
+                binding.etEmail.requestFocus()
+            }else if(!Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text.toString()).matches()){
+                binding.etEmail.error = resources.getString(R.string.enter_your_email)
+                binding.etEmail.requestFocus()
+            } else if(binding.etPhoneNumber.text.toString().isNullOrEmpty()){
+                binding.etPhoneNumber.error = resources.getString(R.string.enter_your_phone_number)
+                binding.etPhoneNumber.requestFocus()
+            }else if(binding.etPhoneNumber.text.toString().length<10){
+                binding.etPhoneNumber.error = resources.getString(R.string.enter_valid_phone_number)
+                binding.etPhoneNumber.requestFocus()
+            }else if(binding.etPassword.text.toString().isNullOrEmpty()){
+                binding.etPassword.error = resources.getString(R.string.enter_password)
+                binding.etPassword.requestFocus()
+            }else if(binding.etConfirmPassword.text.toString().isNullOrEmpty()){
+                binding.etConfirmPassword.error = resources.getString(R.string.enter_confirm_password)
+                binding.etConfirmPassword.requestFocus()
 
-            }else if(etPassword.text.toString() != etConfirmPassword.text.toString()){
-                etConfirmPassword.error = resources.getString(R.string.passwords_must_be_same)
-                etConfirmPassword.requestFocus()
+            }else if(binding.etPassword.text.toString() != binding.etConfirmPassword.text.toString()){
+                binding.etConfirmPassword.error = resources.getString(R.string.passwords_must_be_same)
+                binding.etConfirmPassword.requestFocus()
 
-            }else if(rgGender.checkedRadioButtonId == -1){
+            }else if(binding.rgGender.checkedRadioButtonId == -1){
                 Toast.makeText(this, resources.getString(R.string.select_gender), Toast.LENGTH_LONG).show()
-            }else if(rbOther.isChecked && etOtherName.text.toString().isNullOrEmpty()){
-                etOtherName.error = resources.getString(R.string.enter_other_name)
-                etOtherName.requestFocus()
+            }else if(binding.rbOther.isChecked && binding.etOtherName.text.toString().isNullOrEmpty()){
+                binding.etOtherName.error = resources.getString(R.string.enter_other_name)
+                binding.etOtherName.requestFocus()
             }else{
                 Toast.makeText(this, resources.getString(R.string.registered_successfully), Toast.LENGTH_LONG).show()
             }
