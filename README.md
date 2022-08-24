@@ -11,7 +11,7 @@ Views used
 
 To show errors, setError method is used and to show alerts to the user, Toast is used</p>
 
-<img src="screenshots/login_validations\.gif" alt="first image" width="200"/>
+<img src="screenshots/login_validations.gif" alt="first image" width="200"/>
 </body>
 </html>
 
