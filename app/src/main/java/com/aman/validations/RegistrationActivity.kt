@@ -1,5 +1,6 @@
 package com.aman.validations
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -29,6 +30,32 @@ class RegistrationActivity : AppCompatActivity() {
                 binding.etPhoneNumber.error = resources.getString(R.string.enter_valid_phone_number)
             }else{
                 binding.etPhoneNumber.error = null
+            }
+        }
+
+        binding.etName.doOnTextChanged { text, start, before, count ->
+            if(text.isNullOrEmpty()){
+                binding.etName.error = resources.getString(R.string.enter_name)
+            }
+        }
+
+        binding.etEmail.doOnTextChanged { text, start, before, count ->
+            if(!Patterns.EMAIL_ADDRESS.matcher(binding.etEmail.text.toString()).matches()){
+                binding.etEmail.error = resources.getString(R.string.enter_your_email)
+            }
+        }
+
+        binding.etPassword.doOnTextChanged { text, start, before, count ->
+            if(text.isNullOrEmpty()){
+                binding.etPassword.error = resources.getString(R.string.enter_password)
+            }
+        }
+
+        binding.etConfirmPassword.doOnTextChanged { text, start, before, count ->
+            if(text.isNullOrEmpty()){
+                binding.etConfirmPassword.error = resources.getString(R.string.enter_confirm_password)
+            }else{
+                binding.etConfirmPassword.error = null
             }
         }
 
@@ -66,6 +93,9 @@ class RegistrationActivity : AppCompatActivity() {
                 binding.etOtherName.requestFocus()
             }else{
                 Toast.makeText(this, resources.getString(R.string.registered_successfully), Toast.LENGTH_LONG).show()
+                var intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                this.finish()
             }
         }
     }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JavaApplication</string>
+    <string name="app_name">Validation App</string>
     <string name="login_title">Login</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="login_password">Password</string>
@@ -17,10 +17,11 @@
     <string name="enter_your_email">Enter your email</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
     <string name="signup">Signup</string>
-    <string name="enter_valid_phone_number">ENter valid phone number</string>
+    <string name="enter_valid_phone_number">Enter valid phone number</string>
     <string name="enter_confirm_password">Re enter your password</string>
     <string name="enter_other_name">Enter other name</string>
     <string name="registered_successfully">Registered successfully</string>
     <string name="passwords_must_be_same">Passwords must be same</string>
     <string name="select_gender">Select gender</string>
+    <string name="will_be_added_soon">Will be added soon</string>
 </resources>

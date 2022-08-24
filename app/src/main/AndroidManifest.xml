@@ -7,13 +7,14 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Java Application"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.JavaApplication">
+        android:theme="@style/Theme.ValidationApp">
         <activity
             android:name="com.aman.validations.RegistrationActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name="com.aman.validations.MainActivity"
             android:exported="true">
